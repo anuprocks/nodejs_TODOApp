@@ -1,4 +1,4 @@
-import express, { query } from "express";
+import express from "express";
 import userRouter from "./routes/user.js";
 import taskRouter from "./routes/task.js";
 import { config } from "dotenv";
@@ -12,8 +12,7 @@ config({
   path: "./data/config.env",
 });
 
-//middleware
-// app.use(express.urlencoded({ extended: true }));
+// Using Middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -24,13 +23,13 @@ app.use(
   })
 );
 
-//importing routes
+// Using routes
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/task", taskRouter);
 
 app.get("/", (req, res) => {
-  res.send("nice working");
+  res.send("Nice working");
 });
 
-//using middleware
+// Using Error Middleware
 app.use(errorMiddleware);
